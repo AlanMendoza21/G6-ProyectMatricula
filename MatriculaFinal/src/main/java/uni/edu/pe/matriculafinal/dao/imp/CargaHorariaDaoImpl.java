@@ -52,10 +52,10 @@ public class CargaHorariaDaoImpl implements CargaHorariaDao {
 
         try {
             conexion = getConnection();
-            String sql = "SELECT C.codCurso, C.nombreCurso, C.pesoCreditos, S.numVacantes, C.imagenSilabo\n" +
+            String sql = "SELECT C.codCurso, C.nombreCurso, C.pesoCreditos, S.numVacantes\n" +
                     "FROM Curso C\n" +
                     "INNER JOIN Seccion S\n" +
-                    "ON S.codCurso = C.codCurso;";
+                    "ON S.codCurso = C.codCurso";
             sentencia = conexion.prepareStatement(sql);
             resultado = sentencia.executeQuery();
             while (resultado.next()){
@@ -107,8 +107,7 @@ public class CargaHorariaDaoImpl implements CargaHorariaDao {
                 resultado.getString("codCurso"),
                 resultado.getString("nombreCurso"),
                 resultado.getInt("pesoCreditos"),
-                resultado.getInt("numVacantes"),
-                resultado.getString("imagenSilabo")
+                resultado.getInt("numVacantes")
         );
         return objeto;
     }

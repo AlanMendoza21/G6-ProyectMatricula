@@ -58,7 +58,7 @@ public class EstudianteDaoImpl implements EstudianteDao {
                     "FROM Curso C, HistorialMatricula HM, Estudiante E\n" +
                     "WHERE C.codCurso = HM.codCurso \n" +
                     "AND HM.codEstudiante = E.codEstudiante\n" +
-                    "AND E.codEstudiante = ?;";
+                    "AND E.codEstudiante = ?";
             sentencia = conexion.prepareStatement(sql);
             sentencia.setString(1, usuario.getCodUsuario());
             resultado = sentencia.executeQuery();

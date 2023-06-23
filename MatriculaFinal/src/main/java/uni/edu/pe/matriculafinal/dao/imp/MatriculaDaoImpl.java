@@ -1,21 +1,19 @@
 package uni.edu.pe.matriculafinal.dao.imp;
 
 import org.springframework.stereotype.Repository;
-import uni.edu.pe.matriculafinal.dao.TurnoDao;
-import uni.edu.pe.matriculafinal.dto.Turno;
+import uni.edu.pe.matriculafinal.dao.MatriculaDao;
+import uni.edu.pe.matriculafinal.dto.Matricula;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Repository
-public class TurnoDaoImpl implements TurnoDao {
+public class MatriculaDaoImpl implements MatriculaDao {
 
     private static final String DB_URL = "jdbc:oracle:thin:@//ALAN:1521/xe";
     private static final String USERNAME = "system";
     private static final String PASSWORD = "oracle";
 
-    public static Connection getConnection() throws SQLException{
+    public static Connection getConnection() throws SQLException {
         Connection conexion = null;
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -42,39 +40,23 @@ public class TurnoDaoImpl implements TurnoDao {
         }
     }
 
-    //3: Obtención de la lista de turnos para mostrar en la página principal
-    // Lo que falta: Solo se mostrarán los turnos que cumplan la condición de que su hora de inicio es mayor ..........
+    //8.1:
     @Override
-    public List<Turno> obtenerTurnos() {
-        List<Turno> lista = new ArrayList<>();
+    public Matricula registrarMatricula(Matricula matricula) {
         Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultado = null;
+        //FALTA PONER LA SECUENCIA DE REGISTRO
         try {
             conexion = getConnection();
-            String sql = "select * from Turno";
+            String sql = "INSERT INTO Matricula VALUES(?,?,?,?);";
             sentencia = conexion.prepareStatement(sql);
-            resultado = sentencia.executeQuery();
-            while (resultado.next()){
-                lista.add(extraerTurno(resultado));
-            }
+            sentencia.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error al ejecutar la consulta "+e.getMessage());
-        } finally{
-            closeConnection(conexion,sentencia,resultado);
+            System.out.println("Error al ejecutar la actualización: " + e.getMessage());
+        }finally{
+            closeConnection(conexion, sentencia, null);
         }
-        return lista;
-    }
-
-    private Turno extraerTurno(ResultSet resultado) throws SQLException {
-        Turno puntaje = new Turno(
-                resultado.getString("codTurno"),
-                resultado.getInt("numeroTurno"),
-                resultado.getString(null),
-                resultado.getInt(null),
-                resultado.getInt(null),
-                resultado.getString(null)
-        );
-        return puntaje;
+        return matricula;
     }
 }

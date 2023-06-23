@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CargaHorariaMatricula {
+public class Matricula {
+    private String codEstudiante;
     private String codCurso;
-    private String nombreCurso;
-    private int pesoCreditos;
-    private int numVacantes;
+    private String codSeccion;
+    private String codTipoSeccion;
 }

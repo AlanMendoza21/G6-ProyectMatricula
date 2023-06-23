@@ -44,6 +44,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
 
     // 1: Obtención de usuarios para validación con el ingreso al sistema
+    // VALIDAR EL INGRESO AL SISTEMA DE FORMA LÓGICA
     @Override
     public Usuario obtenerUsuario(Usuario usuario) {
         Connection conexion = null;
@@ -52,7 +53,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
         try {
             conexion = getConnection();
             String sql = "SELECT codUsuario, contrasena from Usuario \n" +
-                    "WHERE codUsuario = ? AND contrasena = ?;";
+                    "WHERE codUsuario = ? AND contrasena = ?";
             sentencia = conexion.prepareStatement(sql);
             sentencia.setString(1, usuario.getCodUsuario());
             sentencia.setString(2, usuario.getContrasena());

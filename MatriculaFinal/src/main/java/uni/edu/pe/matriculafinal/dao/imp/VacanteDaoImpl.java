@@ -62,7 +62,7 @@ public class VacanteDaoImpl implements VacanteDao {
                     "WHERE S.codCurso = C.codCurso\n" +
                     "AND HM.codCurso = C.codCurso\n" +
                     "AND HM.codEstudiante = E.codEstudiante\n" +
-                    "AND E.codestudiante = ?;";
+                    "AND E.codestudiante = ?";
             sentencia = conexion.prepareStatement(sql);
             sentencia.setString(1, usuario.getCodUsuario());
             resultado = sentencia.executeQuery();
@@ -77,7 +77,7 @@ public class VacanteDaoImpl implements VacanteDao {
         return lista;
     }
 
-    //7.2
+    //7.2: Por cada aumento de vacantes, se contabilizará el número de créditos y cursos acumulados
     @Override
     public VacanteSeccion actualizarVacantesOcupada(VacanteSeccion seccion) {
         Connection conexion = null;
