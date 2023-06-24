@@ -3,6 +3,7 @@ package uni.edu.pe.matriculafinal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uni.edu.pe.matriculafinal.dto.Matricula;
+import uni.edu.pe.matriculafinal.dto.rest.RespuestaMatricula;
 import uni.edu.pe.matriculafinal.service.MatriculaService;
 
 @RestController
@@ -11,8 +12,6 @@ public class MatriculaController {
 
     @Autowired
     private MatriculaService service;
-
-    //7.3: Actualizar la columna seccion
 
     //8.1: Insertar los cursos y seccion matriculado por el estudiante,al presionar "CONFIRMAR" de la interfaz matricula
     @RequestMapping(
@@ -25,7 +24,17 @@ public class MatriculaController {
         return service.registrarMatricula(matricula);
     }
 
-    //OBTENCIÓN CODIGO DE SECCIÓN
+    //8.2: Obtener reporte matricula del estudiante
+    @RequestMapping(
+            value = "/obtenerReporteMatricula",
+            method = RequestMethod.POST,
+            produces = "application/json;charset=utf-8"
+    )
+    public @ResponseBody RespuestaMatricula obtenerReporteMatricula(){
+        RespuestaMatricula rpta = new RespuestaMatricula();
+        rpta.setMatriculas(service.obtenerReporteMatricula());
+        return rpta;
+    }
 
 
 }

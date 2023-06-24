@@ -6,6 +6,8 @@ import uni.edu.pe.matriculafinal.dao.MatriculaDao;
 import uni.edu.pe.matriculafinal.dto.Matricula;
 import uni.edu.pe.matriculafinal.service.MatriculaService;
 
+import java.util.List;
+
 @Service
 public class MatriculaServiceImpl implements MatriculaService {
     @Autowired
@@ -14,5 +16,10 @@ public class MatriculaServiceImpl implements MatriculaService {
     @Override
     public Matricula registrarMatricula(Matricula matricula) {
         return dao.registrarMatricula(matricula);
+    }
+
+    @Override
+    public List<Matricula> obtenerReporteMatricula() {
+        return dao.obtenerReporteMatricula();
     }
 }

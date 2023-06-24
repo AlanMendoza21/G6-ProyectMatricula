@@ -2,8 +2,11 @@ package uni.edu.pe.matriculafinal.service;
 
 import uni.edu.pe.matriculafinal.dto.Usuario;
 
-public interface UsuarioService {
-    Usuario obtenerUsuario(Usuario usuario);
+import java.util.List;
 
+public interface UsuarioService {
     Usuario actualizarContrasena(Usuario usuario);
+    List<Usuario> obtenerUsuarios();
+
+    Usuario obtenerUsuario(Usuario usuario);
 }

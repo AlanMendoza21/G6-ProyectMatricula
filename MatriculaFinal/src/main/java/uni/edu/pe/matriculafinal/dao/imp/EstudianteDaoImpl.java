@@ -118,7 +118,7 @@ public class EstudianteDaoImpl implements EstudianteDao {
             String sql = "SELECT  T.numeroTurno, T.horaInicioTurno, T.horaFinTurno\n" +
                     "FROM Estudiante E\n" +
                     "INNER JOIN Turno T\n" +
-                    "ON E.codTurno = T.codTurno where codEstudiante = ?;";
+                    "ON E.codTurno = T.codTurno where codEstudiante = ?";
             sentencia = conexion.prepareStatement(sql);
             sentencia.setString(1, usuario.getCodUsuario());
             resultado = sentencia.executeQuery();

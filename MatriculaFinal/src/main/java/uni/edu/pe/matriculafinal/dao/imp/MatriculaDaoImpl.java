@@ -5,6 +5,7 @@ import uni.edu.pe.matriculafinal.dao.MatriculaDao;
 import uni.edu.pe.matriculafinal.dto.Matricula;
 
 import java.sql.*;
+import java.util.List;
 
 @Repository
 public class MatriculaDaoImpl implements MatriculaDao {
@@ -49,7 +50,7 @@ public class MatriculaDaoImpl implements MatriculaDao {
         //FALTA PONER LA SECUENCIA DE REGISTRO
         try {
             conexion = getConnection();
-            String sql = "INSERT INTO Matricula VALUES(?,?,?,?);";
+            String sql = "INSERT INTO Matricula VALUES(?,?,?,?)";
             sentencia = conexion.prepareStatement(sql);
             sentencia.executeUpdate();
         } catch (SQLException e) {
@@ -58,5 +59,10 @@ public class MatriculaDaoImpl implements MatriculaDao {
             closeConnection(conexion, sentencia, null);
         }
         return matricula;
+    }
+
+    @Override
+    public List<Matricula> obtenerReporteMatricula() {
+        return null;
     }
 }

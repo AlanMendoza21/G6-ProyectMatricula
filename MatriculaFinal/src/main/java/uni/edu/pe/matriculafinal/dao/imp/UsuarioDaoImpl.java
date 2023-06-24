@@ -5,6 +5,8 @@ import uni.edu.pe.matriculafinal.dao.UsuarioDao;
 import uni.edu.pe.matriculafinal.dto.Usuario;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class UsuarioDaoImpl implements UsuarioDao {
@@ -16,14 +18,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
         Connection conexion = null;
 
         try {
-            // Cargar el driver JDBC de Oracle
             Class.forName("oracle.jdbc.driver.OracleDriver");
-
             conexion = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
         } catch (ClassNotFoundException e) {
             System.out.println("Error al cargar el driver JDBC de Oracle: " + e.getMessage());
         }
-
         return conexion;
     }
 
@@ -41,32 +40,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
         } catch (SQLException e) {
             System.out.println("Error al cerrar la conexión: " + e.getMessage());
         }
-    }
-
-    // 1: Obtención de usuarios para validación con el ingreso al sistema
-    // VALIDAR EL INGRESO AL SISTEMA DE FORMA LÓGICA
-    @Override
-    public Usuario obtenerUsuario(Usuario usuario) {
-        Connection conexion = null;
-        PreparedStatement sentencia = null;
-        ResultSet resultado = null;
-        try {
-            conexion = getConnection();
-            String sql = "SELECT codUsuario, contrasena from Usuario \n" +
-                    "WHERE codUsuario = ? AND contrasena = ?";
-            sentencia = conexion.prepareStatement(sql);
-            sentencia.setString(1, usuario.getCodUsuario());
-            sentencia.setString(2, usuario.getContrasena());
-            resultado = sentencia.executeQuery();
-            while (resultado.next()) {
-                usuario = extraerUsuario(resultado);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
-        } finally {
-            closeConnection(conexion, sentencia, resultado);
-        }
-        return usuario;
     }
 
     //2: Actualización (UPDATE) de contraseña de un usuario
@@ -95,20 +68,65 @@ public class UsuarioDaoImpl implements UsuarioDao {
         return usuario;
     }
 
+    @Override
+    public List<Usuario> obtenerUsuarios() {
+        List<Usuario> lista = new ArrayList<>();
+        Connection conexion = null;
+        PreparedStatement sentencia = null;
+        ResultSet resultado = null;
+        try {
+            conexion = getConnection();
+            String sql = "SELECT * from usuario";
+            sentencia = conexion.prepareStatement(sql);
+            resultado = sentencia.executeQuery();
+            while (resultado.next()){
+                lista.add(extraerUsuario(resultado));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
+        }finally{
+            closeConnection(conexion, sentencia, resultado);
+        }
+        return lista;
+    }
+
+    @Override
+    public Usuario obtenerUsuario(Usuario usuario) {
+        Connection conexion = null;
+        PreparedStatement sentencia = null;
+        ResultSet resultado = null;
+        try {
+            conexion = getConnection();
+            String sql = "SELECT * from Usuario \n" +
+                    "WHERE codUsuario = ? AND contrasena = ?";
+            sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, usuario.getCodUsuario());
+            sentencia.setString(2, usuario.getContrasena());
+            resultado = sentencia.executeQuery();
+            while (resultado.next()) {
+                usuario = extraerUsuario(resultado);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
+        } finally {
+            closeConnection(conexion, sentencia, resultado);
+        }
+        return usuario;
+    }
+
+    //-----------------------------------------------------------------------------------------------------------------
     private Usuario extraerUsuario(ResultSet resultado) throws SQLException{
         Usuario objeto=new Usuario(
                 resultado.getString("codUsuario"),
                 resultado.getString("contrasena"),
-                resultado.getString(null),
-                resultado.getString(null),
-                resultado.getString(null),
-                resultado.getString(null),
-                resultado.getString(null),
-                resultado.getString(null),
-                resultado.getString(null)
+                resultado.getString("primerNombre"),
+                resultado.getString("segundoNombre"),
+                resultado.getString("apellidoPaterno"),
+                resultado.getString("apellidoMaterno"),
+                resultado.getString("fechaNacimiento"),
+                resultado.getString("correoUsuario"),
+                resultado.getString("telefonoUsuario")
         );
         return objeto;
     }
 }
-
-

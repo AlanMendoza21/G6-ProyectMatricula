@@ -70,10 +70,10 @@ public class TurnoDaoImpl implements TurnoDao {
         Turno puntaje = new Turno(
                 resultado.getString("codTurno"),
                 resultado.getInt("numeroTurno"),
-                resultado.getString(null),
-                resultado.getInt(null),
-                resultado.getInt(null),
-                resultado.getString(null)
+                resultado.getString("fechaTurno"),
+                resultado.getInt("horaInicioTurno"),
+                resultado.getInt("horaFinTurno"),
+                resultado.getString("tipoTurno")
         );
         return puntaje;
     }
