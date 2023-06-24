@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public class VacanteDaoImpl implements VacanteDao {
-    private static final String DB_URL = "jdbc:oracle:thin:@//192.168.1.3:1521/xe";
+    private static final String DB_URL = "jdbc:oracle:thin:@//ALAN:1521/xe";
     private static final String USERNAME = "system";
     private static final String PASSWORD = "oracle";
 
@@ -87,7 +87,7 @@ public class VacanteDaoImpl implements VacanteDao {
             conexion = getConnection();
             String sql = "UPDATE seccion set numVacantesOcupadas = numVacantesOcupadas +1 \n" +
                     "WHERE codCurso = ? \n" +
-                    "AND codSeccion = ?;";
+                    "AND codSeccion = ?";
             sentencia = conexion.prepareStatement(sql);
             sentencia.setString(1, seccion.getCodCurso());
             sentencia.setString(2, seccion.getCodSeccion());

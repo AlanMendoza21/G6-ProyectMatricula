@@ -3,7 +3,7 @@ package uni.edu.pe.matriculafinal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uni.edu.pe.matriculafinal.dto.Matricula;
-import uni.edu.pe.matriculafinal.dto.rest.RespuestaMatricula;
+import uni.edu.pe.matriculafinal.dto.rest.RespuestaReporteMatricula;
 import uni.edu.pe.matriculafinal.service.MatriculaService;
 
 @RestController
@@ -30,11 +30,9 @@ public class MatriculaController {
             method = RequestMethod.POST,
             produces = "application/json;charset=utf-8"
     )
-    public @ResponseBody RespuestaMatricula obtenerReporteMatricula(){
-        RespuestaMatricula rpta = new RespuestaMatricula();
+    public @ResponseBody RespuestaReporteMatricula obtenerReporteMatricula(){
+        RespuestaReporteMatricula rpta = new RespuestaReporteMatricula();
         rpta.setMatriculas(service.obtenerReporteMatricula());
         return rpta;
     }
-
-
 }

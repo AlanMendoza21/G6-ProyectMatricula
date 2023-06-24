@@ -33,6 +33,9 @@ public class UsuarioController {
     public @ResponseBody Usuario obtenerUsuario(@RequestBody Usuario usuario){
         return service.obtenerUsuario(usuario);
     }
+
+
+    //-----------------------------------------------------------------------------------------------------------------
     // 2: Actualización de olvido de contraseña
     @RequestMapping(
             value = "/actualizarContrasena",

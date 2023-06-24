@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public class EstudianteDaoImpl implements EstudianteDao {
-    private static final String DB_URL = "jdbc:oracle:thin:@//192.168.1.3:1521/xe";
+    private static final String DB_URL = "jdbc:oracle:thin:@//ALAN:1521/xe";
     private static final String USERNAME = "system";
     private static final String PASSWORD = "oracle";
 
@@ -115,7 +115,7 @@ public class EstudianteDaoImpl implements EstudianteDao {
         Turno turno = new Turno();
         try {
             conexion = getConnection();
-            String sql = "SELECT  T.numeroTurno, T.horaInicioTurno, T.horaFinTurno\n" +
+            String sql = "SELECT  T.codTurno,T.numeroTurno,T.fechaTurno, T.horaInicioTurno, T.horaFinTurno,T.tipoTurno\n" +
                     "FROM Estudiante E\n" +
                     "INNER JOIN Turno T\n" +
                     "ON E.codTurno = T.codTurno where codEstudiante = ?";
@@ -168,12 +168,12 @@ public class EstudianteDaoImpl implements EstudianteDao {
 
     private Turno extraerTurnoEstudiante(ResultSet resultado) throws SQLException{
         Turno objeto=new Turno(
-                resultado.getString(null),
+                resultado.getString("codTurno"),
                 resultado.getInt("numeroTurno"),
-                resultado.getString(null),
+                resultado.getString("fechaTurno"),
                 resultado.getInt("horaInicioTurno"),
                 resultado.getInt("horaFinTurno"),
-                resultado.getString(null)
+                resultado.getString("tipoTurno")
         );
         return objeto;
     }
