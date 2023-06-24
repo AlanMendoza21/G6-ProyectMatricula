@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public class CargaHorariaDaoImpl implements CargaHorariaDao {
-    private static final String DB_URL = "jdbc:oracle:thin:@//ALAN:1521/xe";
+    private static final String DB_URL = "jdbc:oracle:thin:@//192.168.1.3:1521/xe";
     private static final String USERNAME = "system";
     private static final String PASSWORD = "oracle";
 
