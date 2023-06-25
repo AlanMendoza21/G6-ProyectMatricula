@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uni.edu.pe.matriculafinal.dto.Matricula;
 import uni.edu.pe.matriculafinal.dto.rest.RespuestaReporteMatricula;
+import uni.edu.pe.matriculafinal.dto.rest.RespuestaSeccion;
 import uni.edu.pe.matriculafinal.service.MatriculaService;
 
 @RestController
@@ -45,5 +46,17 @@ public class MatriculaController {
 
     public @ResponseBody Matricula actualizarMatricula(@RequestBody Matricula matricula){
         return service.actualizarMatricula(matricula);
+    }
+
+    //Ventana emergente al presionar el botón +, de los botones emergentes
+    @RequestMapping(
+            value = "/obtenerSecciones",
+            method = RequestMethod.POST,
+            produces = "application/json;charset=utf-8"
+    )
+    public @ResponseBody RespuestaSeccion obtenerSecciones(String codCurso){
+        RespuestaSeccion rpta = new RespuestaSeccion();
+        rpta.setSecciones(service.obtenerSecciones(codCurso));
+        return rpta;
     }
 }

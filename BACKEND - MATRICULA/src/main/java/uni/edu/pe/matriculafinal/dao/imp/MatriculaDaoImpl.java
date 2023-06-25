@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import uni.edu.pe.matriculafinal.dao.MatriculaDao;
 import uni.edu.pe.matriculafinal.dto.Matricula;
 import uni.edu.pe.matriculafinal.dto.ReporteMatricula;
+import uni.edu.pe.matriculafinal.dto.Seccion;
 import uni.edu.pe.matriculafinal.dto.Turno;
 
 import java.sql.*;
@@ -130,6 +131,39 @@ public class MatriculaDaoImpl implements MatriculaDao {
         return matricula;
     }
 
+    @Override
+    public List<Seccion> obtenerSecciones(String codCurso) {
+        List<Seccion> lista = new ArrayList<>();
+        Connection conexion = null;
+        PreparedStatement sentencia = null;
+        ResultSet resultado = null;
+        try {
+            conexion = getConnection();
+            String sql = "\n" +
+                    "SELECT C.codCurso, C.nombreCurso, S.codSeccion, S.codTipoSeccion, U.apellidoPaterno,\n" +
+                    "U.apellidoMaterno, U.primerNombre, DI.nombreDia, S.horaInicioSeccion, S.horaFinSeccion,\n" +
+                    "S.numVacantesOcupadas, S.numVacantes\n" +
+                    "FROM Seccion S, Curso C, Docente D, Usuario U, Dia DI\n" +
+                    "WHERE C.codCurso = S.codCurso\n" +
+                    "AND S.codDocente = D.codDocente\n" +
+                    "AND S.codDia = DI.codDia\n" +
+                    "AND D.codDocente = U.codUsuario\n" +
+                    "AND C.codCurso = ?";
+            sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, codCurso);
+            resultado = sentencia.executeQuery();
+            while (resultado.next()){
+                lista.add(extraerSeccion(resultado));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
+        }finally{
+            closeConnection(conexion, sentencia, resultado);
+        }
+        return lista;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------
     private ReporteMatricula extraerMatricula(ResultSet resultado) throws SQLException {
        ReporteMatricula puntaje=new ReporteMatricula(
             resultado.getString("codCurso"),
@@ -144,6 +178,24 @@ public class MatriculaDaoImpl implements MatriculaDao {
                resultado.getInt("horaFinSeccion"),
                resultado.getString("codAula")
                );
+        return puntaje;
+    }
+
+    private Seccion extraerSeccion(ResultSet resultado) throws SQLException {
+        Seccion puntaje = new Seccion(
+                resultado.getString("codCurso"),
+                resultado.getString("nombreCurso"),
+                resultado.getString("codSeccion"),
+                resultado.getString("codTipoSeccion"),
+                resultado.getString("apellidoPaterno"),
+                resultado.getString("apellidoMaterno"),
+                resultado.getString("primerNombre"),
+                resultado.getString("nombreDia"),
+                resultado.getInt("horaInicioSeccion"),
+                resultado.getInt("horaFinSeccion"),
+                resultado.getInt("numVacantesOcupadas"),
+                resultado.getInt("numVacantes")
+        );
         return puntaje;
     }
 

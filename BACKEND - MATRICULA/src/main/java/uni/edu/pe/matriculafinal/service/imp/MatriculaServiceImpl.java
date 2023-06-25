@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uni.edu.pe.matriculafinal.dao.MatriculaDao;
 import uni.edu.pe.matriculafinal.dto.Matricula;
 import uni.edu.pe.matriculafinal.dto.ReporteMatricula;
+import uni.edu.pe.matriculafinal.dto.Seccion;
 import uni.edu.pe.matriculafinal.service.MatriculaService;
 
 import java.util.List;
@@ -25,5 +26,10 @@ public class MatriculaServiceImpl implements MatriculaService {
     @Override
     public Matricula actualizarMatricula(Matricula matricula) {
         return dao.actualizarMatricula(matricula);
+    }
+
+    @Override
+    public List<Seccion> obtenerSecciones(String codCurso) {
+        return  dao.obtenerSecciones(codCurso);
     }
 }

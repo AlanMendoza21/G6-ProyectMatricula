@@ -50,7 +50,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
         ResultSet resultado = null;
         try {
             conexion = getConnection();
-            String sql = "UPDATE usuario set contrasena = ?\n" +
+            String sql = "UPDATE usuario set contrasena = ?\n" +    
                     "where codUsuario = ? \n" +
                     "and correoUsuario = ?\n" +
                     "and fechaNacimiento = ?;";
