@@ -108,7 +108,7 @@ public class EstudianteDaoImpl implements EstudianteDao {
 
     //7.1:
     @Override
-    public Turno obtenerTurnoEstudiante(Usuario usuario) {
+    public Turno obtenerTurnoEstudiante(String codUsuario) {
         Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultado = null;
@@ -120,7 +120,7 @@ public class EstudianteDaoImpl implements EstudianteDao {
                     "INNER JOIN Turno T\n" +
                     "ON E.codTurno = T.codTurno where codEstudiante = ?";
             sentencia = conexion.prepareStatement(sql);
-            sentencia.setString(1, usuario.getCodUsuario());
+            sentencia.setString(1, codUsuario);
             resultado = sentencia.executeQuery();
             while (resultado.next()){
                 turno = extraerTurnoEstudiante(resultado);

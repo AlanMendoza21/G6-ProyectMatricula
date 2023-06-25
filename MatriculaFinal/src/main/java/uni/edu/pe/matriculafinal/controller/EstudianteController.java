@@ -21,7 +21,7 @@ public class EstudianteController {
             method= RequestMethod.POST,
             produces = "application/json;charset=utf-8",
             consumes = "application/json;charset=utf-8")
-    public @ResponseBody List<CursoDisponibleEstudiante> obtenerCursosDisponible(@RequestBody Usuario usuario){
+    public @ResponseBody List<CursoDisponibleEstudiante> obtenerCursosDisponible(Usuario usuario){
         return service.obtenerCursosDisponible(usuario);
     }
     //4.2: Obtener la carga horaria habilitados solo para el estudiante
@@ -38,7 +38,7 @@ public class EstudianteController {
             method= RequestMethod.POST,
             produces = "application/json;charset=utf-8",
             consumes = "application/json;charset=utf-8")
-    public @ResponseBody Turno obtenerTurnoEstudiante(@RequestBody Usuario usuario){
-        return service.obtenerTurnoEstudiante(usuario);
+    public @ResponseBody Turno obtenerTurnoEstudiante(String codUsuario){
+        return service.obtenerTurnoEstudiante(codUsuario);
     }
 }

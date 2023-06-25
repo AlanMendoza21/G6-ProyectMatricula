@@ -12,5 +12,5 @@ public interface EstudianteService {
 
     List<CargaHorariaEstudiante> obtenerCargaHorariaEstudiante(Usuario usuario);
 
-    Turno obtenerTurnoEstudiante(Usuario usuario);
+    Turno obtenerTurnoEstudiante(String codUsuario);
 }
