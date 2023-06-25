@@ -12,5 +12,5 @@ public interface  EstudianteDao {
 
     List<CargaHorariaEstudiante> obtenerCargaHorariaEstudiante(Usuario usuario);
 
-    Turno obtenerTurnoEstudiante(Usuario usuario);
+    Turno obtenerTurnoEstudiante(String codUsuario);
 }

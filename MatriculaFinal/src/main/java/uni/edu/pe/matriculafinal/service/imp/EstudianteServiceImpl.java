@@ -26,7 +26,7 @@ public class EstudianteServiceImpl implements EstudianteService {
     }
 
     @Override
-    public Turno obtenerTurnoEstudiante(Usuario usuario) {
-        return dao.obtenerTurnoEstudiante(usuario);
+    public Turno obtenerTurnoEstudiante(String codUsuario) {
+        return dao.obtenerTurnoEstudiante(codUsuario);
     }
 }

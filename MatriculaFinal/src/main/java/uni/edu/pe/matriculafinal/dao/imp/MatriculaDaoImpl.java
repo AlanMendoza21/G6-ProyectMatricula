@@ -50,11 +50,13 @@ public class MatriculaDaoImpl implements MatriculaDao {
         Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultado = null;
-        //FALTA PONER LA SECUENCIA DE REGISTRO
         try {
             conexion = getConnection();
             String sql = "INSERT INTO Matricula VALUES(?,?,?,?)";
             sentencia = conexion.prepareStatement(sql);
+            /*En la parte del front se captura el codEstudiante en el log-in y los demás atributos se almacenarán
+              cuando se presione el botón MATRICULAR
+             */
             sentencia.setString(1,matricula.getCodEstudiante());
             sentencia.setString(2,matricula.getCodCurso());
             sentencia.setString(3,matricula.getCodSeccion());
@@ -70,14 +72,15 @@ public class MatriculaDaoImpl implements MatriculaDao {
 
     @Override
     public List<ReporteMatricula> obtenerReporteMatricula() {
+        String codEstudiante = "20212122G";
         List<ReporteMatricula> lista = new ArrayList<>();
         Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultado = null;
         try {
             conexion = getConnection();
-            String sql = " SELECT M.codCurso, C.nombreCurso, M.codSeccion, M.codTipoSeccion, U.apellidoPaterno, \n" +
-                    "U.apellidoMaterno, U.primerNombre, DI.nombreDia, S.horaInicioSeccion, S.horaFinSeccion, S.codAula, T.descripcionTipoSeccion\n" +
+            String sql = " SELECT M.codCurso, C.nombreCurso, M.codSeccion,T.descripcionTipoSeccion, U.apellidoPaterno, \n" +
+                    "U.apellidoMaterno, U.primerNombre, DI.nombreDia, S.horaInicioSeccion, S.horaFinSeccion, S.codAula\n" +
                     "FROM Curso C, Seccion S, Docente D, Estudiante E, Matricula M, Dia DI, Usuario U, TipoSeccion T, HistorialMatricula H\n" +
                     "WHERE H.codCurso = C.codCurso\n" +
                     "AND C.codCurso = S.codCurso\n" +
@@ -89,8 +92,10 @@ public class MatriculaDaoImpl implements MatriculaDao {
                     "AND S.codDocente = D.codDocente\n" +
                     "AND D.codDocente = U.codUsuario\n" +
                     "AND M.codEstudiante = H.codEstudiante\n" +
-                    "AND H.codEstudiante = E.codEstudiante";
+                    "AND H.codEstudiante = E.codEstudiante\n" +
+                    "AND E.codEstudiante = ?";
             sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, codEstudiante);
             resultado = sentencia.executeQuery();
             while (resultado.next()) {
                 lista.add(extraerMatricula(resultado));
