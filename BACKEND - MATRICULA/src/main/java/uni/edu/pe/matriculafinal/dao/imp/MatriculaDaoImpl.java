@@ -52,6 +52,7 @@ public class MatriculaDaoImpl implements MatriculaDao {
         ResultSet resultado = null;
         try {
             conexion = getConnection();
+            //En esta parte al momento de registrar se debe registrar a ambas tipos de secciones, teórico y práctico
             String sql = "INSERT INTO Matricula VALUES(?,?,?,?)";
             sentencia = conexion.prepareStatement(sql);
             /*En la parte del front se captura el codEstudiante en el log-in y los demás atributos se almacenarán
@@ -105,6 +106,28 @@ public class MatriculaDaoImpl implements MatriculaDao {
             closeConnection(conexion, sentencia, resultado);
         }
         return lista;
+    }
+
+    //Cuando presiona el botón + por dos veces o más, entonces se utiliza este servicio
+    @Override
+    public Matricula actualizarMatricula(Matricula matricula) {
+        Connection conexion = null;
+        PreparedStatement sentencia = null;
+        ResultSet resultado = null;
+        try {
+            conexion = getConnection();
+            String sql = "UPDATE Matricula SET codSeccion=? WHERE codEstudiante=? AND codCurso =?";
+            sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, matricula.getCodSeccion());
+            sentencia.setString(2, matricula.getCodEstudiante());
+            sentencia.setString(3, matricula.getCodCurso());
+            sentencia.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la actualización: " + e.getMessage());
+        }finally{
+            closeConnection(conexion, sentencia, null);
+        }
+        return matricula;
     }
 
     private ReporteMatricula extraerMatricula(ResultSet resultado) throws SQLException {

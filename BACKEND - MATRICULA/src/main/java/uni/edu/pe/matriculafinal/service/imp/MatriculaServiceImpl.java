@@ -21,4 +21,9 @@ public class MatriculaServiceImpl implements MatriculaService {
     public List<ReporteMatricula> obtenerReporteMatricula(String codUsuario) {
         return dao.obtenerReporteMatricula(codUsuario);
     }
+
+    @Override
+    public Matricula actualizarMatricula(Matricula matricula) {
+        return dao.actualizarMatricula(matricula);
+    }
 }

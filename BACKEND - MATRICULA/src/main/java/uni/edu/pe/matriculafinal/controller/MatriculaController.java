@@ -35,4 +35,15 @@ public class MatriculaController {
         rpta.setMatriculas(service.obtenerReporteMatricula(codUsuario));
         return rpta;
     }
+
+    @RequestMapping(
+            value = "/actualizarMatricula",
+            method = RequestMethod.POST,
+            consumes = "application/json;charset=utf-8",
+            produces = "application/json;charset=utf-8"
+    )
+
+    public @ResponseBody Matricula actualizarMatricula(@RequestBody Matricula matricula){
+        return service.actualizarMatricula(matricula);
+    }
 }

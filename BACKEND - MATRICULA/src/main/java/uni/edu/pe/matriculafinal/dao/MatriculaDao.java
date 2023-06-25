@@ -9,4 +9,6 @@ public interface MatriculaDao {
     Matricula registrarMatricula(Matricula matricula);
 
     List<ReporteMatricula> obtenerReporteMatricula(String codUsuario);
+
+    Matricula actualizarMatricula(Matricula matricula);
 }
