@@ -31,7 +31,7 @@ public class MatriculaController {
             method = RequestMethod.POST,
             produces = "application/json;charset=utf-8"
     )
-    public @ResponseBody RespuestaReporteMatricula obtenerReporteMatricula(String codUsuario){
+    public @ResponseBody RespuestaReporteMatricula obtenerReporteMatricula(@RequestBody String codUsuario){
         RespuestaReporteMatricula rpta = new RespuestaReporteMatricula();
         rpta.setMatriculas(service.obtenerReporteMatricula(codUsuario));
         return rpta;
@@ -54,7 +54,7 @@ public class MatriculaController {
             method = RequestMethod.POST,
             produces = "application/json;charset=utf-8"
     )
-    public @ResponseBody RespuestaSeccion obtenerSecciones(String codCurso){
+    public @ResponseBody RespuestaSeccion obtenerSecciones(@RequestBody String codCurso){
         RespuestaSeccion rpta = new RespuestaSeccion();
         rpta.setSecciones(service.obtenerSecciones(codCurso));
         return rpta;

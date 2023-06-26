@@ -22,7 +22,7 @@ public class EstudianteController {
             method = RequestMethod.POST,
             produces = "application/json;charset=utf-8"
     )
-    public @ResponseBody RespuestaCursoDisponibleEstudiante obtenerCursosDisponible(String codUsuario){
+    public @ResponseBody RespuestaCursoDisponibleEstudiante obtenerCursosDisponible(@RequestBody String codUsuario){
         RespuestaCursoDisponibleEstudiante rpta = new RespuestaCursoDisponibleEstudiante();
         rpta.setCurso_disponibles(service.obtenerCursosDisponible(codUsuario));
         return rpta;
@@ -41,7 +41,7 @@ public class EstudianteController {
             method= RequestMethod.POST,
             produces = "application/json;charset=utf-8",
             consumes = "application/json;charset=utf-8")
-    public @ResponseBody Turno obtenerTurnoEstudiante(String codUsuario){
+    public @ResponseBody Turno obtenerTurnoEstudiante(@RequestBody String codUsuario){
         return service.obtenerTurnoEstudiante(codUsuario);
     }
 }
