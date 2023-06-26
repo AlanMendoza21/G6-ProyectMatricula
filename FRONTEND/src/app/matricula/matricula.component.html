@@ -1,0 +1,52 @@
+      <div id="matricula" class="hidden" >
+        <section class="turno">
+          <div class="content">Turno GRUPO {{numeroTurno}} desde {{fechaTurno}}
+            {{horaInicioTurno}} hasta  {{fechaTurno}} {{horaFinTurno}}</div>
+
+        </section>
+        <section class="informacion_matricula">
+          <div>
+            <span>Cursos seleccionados: </span> cursos
+          </div>
+          <div>
+            <span>Créditos seleccionados: </span> creditosSeleccionados
+          </div>
+          <div>
+            <span>Créditos permitidos</span> {{lista[1].numeroCreditos}}
+          </div>
+          <button id="confirmar-modal">Confirmar</button>
+        </section>
+        <section class="cursosMatricula">
+          <table class="tablacurso" border="1px" >
+            <tr>
+              <th>Código</th>
+              <th>Curso</th>
+              <th>Créditos</th>
+              <th>Nro Veces</th>
+              <th>Tipo</th>
+              <th>Sección</th>
+              <th>Boton</th>
+            </tr>
+            <tr>
+              <div *ngFor="let item of lista; let i=index">
+                <td>{{item.codCurso}}</td>
+                <td>{{item.nombreCurso}}</td>
+                <td>{{item.pesoCreditos}}</td>
+                <td>{{item.numeroVeces}}</td>
+                <td>{{item.codTipoCurso}}</td>
+                <td> </td>
+                <td>
+                  <button id="abrir-modal">
+                    <a [routerLink]="['/seccion/',item.codCurso]">
+                      {{item.codCurso}}
+                      <img src="imagenes/imagen+.png" alt=""/></a>
+                  </button>}
+
+                </td>
+              </div>
+
+            </tr>
+          </table>
+        </section>
+      </div>
+
