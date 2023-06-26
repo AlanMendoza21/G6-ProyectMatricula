@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class MatriculaDaoImpl implements MatriculaDao {
 
-    private static final String DB_URL = "jdbc:oracle:thin:@//ALAN:1521/xe";
+    private static final String DB_URL = "jdbc:oracle:thin:@//localhost:1522/xe";
     private static final String USERNAME = "system";
     private static final String PASSWORD = "oracle";
 
@@ -139,16 +139,16 @@ public class MatriculaDaoImpl implements MatriculaDao {
         ResultSet resultado = null;
         try {
             conexion = getConnection();
-            String sql = "\n" +
-                    "SELECT C.codCurso, C.nombreCurso, S.codSeccion, S.codTipoSeccion, U.apellidoPaterno,\n" +
-                    "U.apellidoMaterno, U.primerNombre, DI.nombreDia, S.horaInicioSeccion, S.horaFinSeccion,\n" +
-                    "S.numVacantesOcupadas, S.numVacantes\n" +
-                    "FROM Seccion S, Curso C, Docente D, Usuario U, Dia DI\n" +
-                    "WHERE C.codCurso = S.codCurso\n" +
-                    "AND S.codDocente = D.codDocente\n" +
-                    "AND S.codDia = DI.codDia\n" +
-                    "AND D.codDocente = U.codUsuario\n" +
-                    "AND C.codCurso = ?";
+            String sql = "SELECT C.codCurso, C.nombreCurso, S.codSeccion, S.codTipoSeccion, U.apellidoPaterno,\n"+
+            "U.apellidoMaterno, U.primerNombre, DI.nombreDia, S.horaInicioSeccion, S.horaFinSeccion,\n"+
+                   "S.numVacantesOcupadas, S.numVacantes\n"+
+            "FROM Seccion S, Curso C, Docente D, Usuario U, Dia DI\n"+
+            "WHERE C.codCurso = S.codCurso\n"+
+            "AND S.codDocente = D.codDocente\n"+
+            "AND S.codDia = DI.codDia\n"+
+            "AND D.codDocente = U.codUsuario\n"+
+            "AND C.codCurso = ?\n"+
+            "ORDER BY S.codSeccion, S.codTipoSeccion DESC";
             sentencia = conexion.prepareStatement(sql);
             sentencia.setString(1, codCurso);
             resultado = sentencia.executeQuery();

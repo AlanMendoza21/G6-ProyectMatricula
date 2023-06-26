@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public class VacanteDaoImpl implements VacanteDao {
-    private static final String DB_URL = "jdbc:oracle:thin:@//ALAN:1521/xe";
+    private static final String DB_URL = "jdbc:oracle:thin:@//localhost:1522/xe";
     private static final String USERNAME = "system";
     private static final String PASSWORD = "oracle";
 
