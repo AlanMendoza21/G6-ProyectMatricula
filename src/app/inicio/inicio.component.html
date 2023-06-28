@@ -1,0 +1,86 @@
+<body>
+<div class="contenidoprincipal">
+  <!-- Barra de navegación -->
+  <aside class="contenedor-vertical">
+    <ul>
+      <li class="contenedor-titulofiis">
+        <a href="#" id="opcionPrincipal">
+          <h2 id="fiis">FIIS</h2>
+        </a>
+      </li>
+      <li class="opciones">
+         <a href="#" id="opcionCursosDisponibles">
+          <img class="icono1" src="icono1.jpg" alt="cursos"><br/>
+          <span><b>Cursos</b><br> <b>Disponibles</b><br></span>
+        </a>
+      </li>
+      <li class="opciones">
+        <a href="#" id="opcionCargaHoraria">
+          <img class="icono2" src="horario.jpg" alt="cargahoraria"><br/>
+          <span><b>Carga horaria</b></span>
+        </a>
+      </li>
+      <li class="opciones">
+        <a href="#" id="opcionVacantes">
+          <img src="icono3.jpg" alt="vacantes"><br/>
+          <span><b>Vacantes</b></span>
+        </a>
+      </li>
+      <li class="contenedor boton-matricular">
+        <button>
+        <div *ngIf="mensaje=='Horario correcto'">
+          <h1>"Horario correcto"</h1> </div>
+          <a [routerLink]="['/matricula/', codUsuario]">Matricula</a>
+
+        </button>
+      </li>
+    </ul>
+  </aside>
+  <!-- Contenido principal parte derecha -->
+  <main class="contenidoderecho">
+    <!-- inicio parte  derecha superior fijo-->
+    <header class="bienvenida">
+      <h1 id="tituloBienvenida"><br> BIENVENIDO AL SISTEMA MATRÍCULA</h1>
+      <div class="iconouni">
+        <img src="app/imagenes/iconouni.jpg" alt="iconoUni">
+      </div>
+    </header>
+    <!-- Final parte derecha superior fijo -->
+    <div id="contenido-principal">
+      <div id="principal">
+        <div class="contenedor-principal">
+          <section class="principal-anuncios">
+            <h2>Anuncios</h2>
+            <article> Aca van los anuncios</article>
+            <article>Aca van los anuncios</article>
+            <article>Aca van los anuncios</article>
+            <article>Aca van los anuncios</article>
+            <button> Ver Reglamento Matrícula</button>
+          </section>
+          <section class="principal-turnos">
+            <h2>Tu Horario:</h2>
+            <div>Turno GRUPO {{numeroTurno}} del día {{fechaTurno}} de {{horaInicioTurno}} hasta {{horaFinTurno}}</div>
+            <h2>Turnos FIIS</h2>
+            <div class="principal-mostrar-turnos">
+              <span>Numero Turno | Hora Inicio Turno | Hora Fin Turno</span>
+              <li *ngFor="let data of lista">
+                <span>{{data.numeroTurno}}</span>
+                <span>  |   </span>
+                <span>{{data.horaInicioTurno}}</span>
+                <span>  |   </span>
+                <span>{{data.horaFinTurno}}</span>
+              </li>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+</body>
+
+
+
+
