@@ -10,33 +10,33 @@
       </li>
       <li class="opciones">
         <a href="#" id="opcionCursosDisponibles">
-          <img class="icono1" src="imagenes/iconolibro1.png" alt="cursos"><br/>
+          <img class="icono1" src="./assets/iconolibro1.png" alt="cursos"><br/>
           <span><b>Cursos</b><br> <b>Disponibles</b><br></span>
         </a>
       </li>
       <li class="opciones">
         <a href="#" id="opcionCargaHoraria">
-          <img class="icono2" src="imagenes/icono2.png" alt="cargahoraria"><br/>
+          <img class="icono2" src="./assets/icono2.png" alt="cargahoraria"><br/>
           <span><b>Carga horaria</b></span>
         </a>
       </li>
       <li class="opciones">
         <a href="#" id="opcionVacantes">
-          <img src="imagenes/icono3.png" alt="vacantes"><br/>
+          <img src="./assets/icono3.png" alt="vacantes"><br/>
           <span><b>Vacantes</b></span>
         </a>
-      <!--</li>
-      <li class="contenedor boton-matricular">
-        <button (click)="mostrarMensaje()" class="Matricular">Matricula</button>
-        <div *ngIf="mensaje=='Horario correcto'">
-          <h1 class="hidden">"Horario correcto"</h1>
-          <a [routerLink]="['/selectmatricula/']"></a>
-        </div>
-        <div *ngIf="mensaje=='No es su hora de matricula'">
-          <h1 class="hidden">"Horario incorrecto"</h1>
-          <a [routerLink]="['/selectmatricula/']"></a>
-        </div>
-      </li>-->
+        <!--</li>
+        <li class="contenedor boton-matricular">
+          <button (click)="mostrarMensaje()" class="Matricular">Matricula</button>
+          <div *ngIf="mensaje=='Horario correcto'">
+            <h1 class="hidden">"Horario correcto"</h1>
+            <a [routerLink]="['/selectmatricula/']"></a>
+          </div>
+          <div *ngIf="mensaje=='No es su hora de matricula'">
+            <h1 class="hidden">"Horario incorrecto"</h1>
+            <a [routerLink]="['/selectmatricula/']"></a>
+          </div>
+        </li>-->
     </ul>
   </aside>
   <!-- Contenido principal parte derecha -->
@@ -45,7 +45,7 @@
     <header class="bienvenida">
       <h1 id="tituloBienvenida"><br> BIENVENIDO AL SISTEMA MATRÍCULA</h1>
       <div class="iconouni">
-        <img src="imagenes/iconouni.png" alt="iconoUni">
+        <img src="./assets/iconouni.png" alt="iconoUni">
       </div>
     </header>
     <!-- Final parte derecha superior fijo -->
@@ -59,10 +59,11 @@
         <div>
           <span>Créditos permitidos</span> {{lista[1].numeroCreditos}}
         </div>
-        <button id="confirmar-modal">Confirmar</button>
+        <button id="confirmar-modal"><a [routerLink]="['/reporte/',codUsuario]">Confirmar</a></button>
       </section>
       <section class="cursosMatricula">
-        <table class="tablacurso" border="1px" >
+        <table class="tablacurso" border="1px">
+          <thead>
           <tr>
             <th>Código</th>
             <th>Curso</th>
@@ -72,26 +73,31 @@
             <th>Sección</th>
             <th>[      ]</th>
           </tr>
-          <tr>
-            <div *ngFor="let item of lista; let i=index">
-              <td><span>{{item.codCurso}}</span></td>
-              <td><span>{{item.nombreCurso}}</span></td>
-              <td><span>{{item.pesoCreditos}}</span></td>
-              <td><span>{{item.numeroVeces}}</span></td>
-              <td><span>{{item.codTipoCurso}}</span></td>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let item of lista; let i=index">
+            <tr>
+              <td>{{item.codCurso}}</td>
+              <td>{{item.nombreCurso}}</td>
+              <td>{{item.pesoCreditos}}</td>
+              <td>{{item.numeroVeces}}</td>
+              <td>{{item.codTipoCurso}}</td>
               <td><span> </span></td>
-              <td><span>
-                <button id="abrir-modal">
-                  <a [routerLink]="['/seccion/',codUsuario,item.codCurso]">
-                    +
-                    </a>
-                </button>
-              </span></td>
-            </div>
-
-          </tr>
+              <td>
+            <span>
+              <button id="abrir-modal">
+                <a [routerLink]="['/seccion/',codUsuario,item.codCurso]">
+                  +
+                </a>
+              </button>
+            </span>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
         </table>
       </section>
+
     </div>
 
   </main>

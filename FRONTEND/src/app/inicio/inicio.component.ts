@@ -29,7 +29,6 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // @ts-ignore
     this.api.obtenerTurnos().subscribe(data=> {
       this.lista=data.turnos;});
   }
@@ -49,7 +48,7 @@ export class InicioComponent implements OnInit {
 
   obtenerTurno():boolean{
     this.api.obtenerTurnoEstudiante(this.codUsuario).subscribe(data=>{this.CodTurno=data.codTurno,
-        console.log(this.CodTurno)})
+      console.log(this.CodTurno)})
     let validado = false;
     let indice1= 0;
     const horaActual = this.convertirHoraEntero();
@@ -57,8 +56,8 @@ export class InicioComponent implements OnInit {
       //console.log(this.usuarios[this.indice])
 
       if(this.lista[indice1].codTurno==this.CodTurno
-          && this.lista[indice1].horaInicioTurno< 1030
-          && this.lista[indice1].horaFinTurno>1030) {
+        && this.lista[indice1].horaInicioTurno< 1030
+        && this.lista[indice1].horaFinTurno>1030) {
         //console.log(this.usuarios[this.indice].cod_cliente)
         //console.log(this.usuarios[this.indice].nombres)
         validado=true;
@@ -72,7 +71,7 @@ export class InicioComponent implements OnInit {
   }
   mostrarMensaje() {
     this.obtenerTurno()
-    if(this.obtenerTurno()==true){
+    if(this.obtenerTurno()){
       this.mensaje= "Horario correcto";
     }
     else if(this.obtenerTurno()==false){

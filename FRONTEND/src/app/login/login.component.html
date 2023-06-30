@@ -15,15 +15,17 @@
         <label> Contraseña:</label>
         <input type="password" [(ngModel)]="contrasena" [ngModelOptions]="{standalone: true} " placeholder="Ingresar contraseña"><br>
       </div>
-      <button (click)="mostrarMensaje()" class="boton-login">
+      <button (click)="validar()" class="boton-login">
         <input type="button" value="Confirmar datos" class="boton-confirmardatos">
       </button>
       <p>{{mensaje}}</p>
 
+
       <div *ngIf="mensaje=='Usuario validado'">
-        <button class="boton-login"><a [routerLink]="['/inicio/',codUsuario]">
-          INGRESAR</a>
-        </button>
+
+          <a [routerLink]="['/inicio/',codUsuario]">
+            INGRESAR</a>
+
       </div>
       <a href="#">¿Olvidaste tu contraseña?</a><br>
 

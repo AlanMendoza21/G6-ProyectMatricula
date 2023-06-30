@@ -11,8 +11,6 @@ import { SeccionComponent } from './seccion/seccion.component';
 import {InicioComponent} from "./inicio/inicio.component";
 import {ReportematriculaComponent} from "./reportematricula/reportematricula.component";
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

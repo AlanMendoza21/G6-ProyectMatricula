@@ -1,1 +1,38 @@
-<p>reportematricula works!</p>
+
+
+<div class="modal-overlay1">
+  <div class="modal-dialog1">
+    <div class="tabla-modal1">
+      <table class="tablacurso">
+        <thead>
+        <tr>
+          <th class="cabecero">Curso</th>
+          <th class="cabecero">Sección</th>
+          <th class="cabecero">Tipo de Sección</th>
+          <th class="cabecero">Docente</th>
+          <th class="cabecero">Horario</th>
+          <th class="cabecero">Aula</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of reporte; let i=index">
+          <tr>
+            <td>{{ item.nombreCurso }}</td>
+            <td>{{ item.codSeccion }}</td>
+            <td>{{ item.descripcionTipoSeccion }}</td>
+            <td>{{ item.apellidoPaterno }} {{ item.apellidoMaterno }}, {{ item.primerNombre }}</td>
+            <td>{{ item.nombreDia }} {{ item.horaInicioSeccion }} - {{ item.horaFinSeccion }}</td>
+            <td>{{ item.codAula }}</td>
+          </tr>
+        </ng-container>
+
+        </tbody>
+      </table>
+
+
+      <button class="regresar-button"><a [routerLink]="['/matricula/',codUsuario]">Regresar</a></button>
+
+      <button class="regresar-button" (click)="imprimir()">Imprimir</button>
+    </div>
+      </div>
+</div>

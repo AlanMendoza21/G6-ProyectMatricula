@@ -138,7 +138,7 @@ main {
   text-align: center;
   width: 80%;
   margin: 20px auto;
-  border: 2px solid darkturquoise;
+  border: 2px solid crimson;
 }
 footer {
   background-color: #cccccc;
@@ -152,10 +152,52 @@ footer {
 .hidden{
   display: none;
 }
+
+.cursosMatricula {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tablacurso {
+  width: 80%;
+}
+.tablacurso th {
+  white-space: nowrap;
+}
+.tablacurso {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
 .tablacurso th,
 .tablacurso td {
-  width: auto;
-  padding: 5px;
+  padding: 8px;
   text-align: center;
 }
+
+.tablacurso th {
+  background-color: darkblue;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}
+
+.tablacurso td {
+  border: 1px solid gray;
+  background-color: azure;
+
+}
+.turno{
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top:7px ;
+
+}
+
 

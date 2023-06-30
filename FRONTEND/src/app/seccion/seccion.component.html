@@ -1,33 +1,36 @@
-<p>seccion works codigo: {{codCurso}}</p>
+<p class="cod-seccion">seccion works codigo: {{codCurso}}</p>
 
 <div class="modal-overlay">
   <div class="modal-dialog">
     <div class="tabla-modal">
-      <table>
+      <table class="tablacurso">
+        <thead>
         <tr>
           <th class="cabecero">Sección</th>
           <th class="cabecero">Horario</th>
           <th class="cabecero">Inscritos</th>
+          <th class="cabecero">Vacantes</th>
         </tr>
-        <tr>
-           <div *ngFor="let item of secciones; let i=index">
-              <td>
-                <button class="seleccionar-modal" (click)="registrar(codUsuario, item.codSeccion, item.codCurso, item.codTipoSeccion)">
-                  Elegir
-                </button>
-
-              </td>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of secciones; let i=index">
+          <tr>
+            <td>
+              <button class="seleccionar-modal" (click)="registrar(codUsuario, item.codSeccion, item.codCurso, item.codTipoSeccion)">
+                Elegir
+              </button>
+            </td>
             <td>{{item.codSeccion}}</td>
             <td>{{item.codTipoSeccion}} {{item.apellidoPaterno}}{{item.apellidoMaterno}},{{item.primerNombre}}
               {{item.horaInicioSeccion}} - {{item.horaFinSeccion}}</td>
             <td>{{item.numVacantes}} / {{item.numVacantesOcupadas}}</td>
-
-          </div>
-        </tr>
+          </tr>
+        </ng-container>
+        </tbody>
       </table>
 
-      <button><a [routerLink]="['/matricula/',codUsuario]">
-       Regresar</a>
+      <button class="regresar-button"><a [routerLink]="['/matricula/',codUsuario]">
+        Regresar</a>
       </button>
     </div>
   </div>

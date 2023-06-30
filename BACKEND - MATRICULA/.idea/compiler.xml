@@ -9,12 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="MatriculaFinal" />
         <module name="BACKEND" />
+        <module name="BACKEND - MATRICULA" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="BACKEND" options="-parameters" />
+      <module name="BACKEND - MATRICULA" options="-parameters" />
       <module name="MatriculaFinal" options="-parameters" />
     </option>
   </component>

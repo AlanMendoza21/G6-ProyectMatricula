@@ -18,22 +18,16 @@ export class MatriculaComponent implements OnInit {
   fechaTurno: string = "";
 
   constructor(private api: ApiService, private activatedRoute: ActivatedRoute) {
-
     this.codUsuario = String(this.activatedRoute.snapshot.paramMap.get('codUsuario'));
-    //console.log(this.codUsuario)
-
     this.api.obtenerTurnoEstudiante(this.codUsuario).subscribe(data => {
       this.numeroTurno = data.numeroTurno;
       this.horaInicioTurno = data.horaInicioTurno;
       this.horaFinTurno = data.horaFinTurno;
       this.fechaTurno = data.fechaTurno;
-      //console.log(this.numeroTurno)
     })
 
     this.api.obtenerCursosDisponible(this.codUsuario).subscribe(data => {
       this.lista = data.curso_disponibles;
-      //console.log(this.lista)
-      //console.log(this.lista)
     })
   }
 

@@ -74,6 +74,7 @@ public class MatriculaDaoImpl implements MatriculaDao {
 
     @Override
     public List<ReporteMatricula> obtenerReporteMatricula(String codUsuario) {
+        codUsuario= "20212122G";
         List<ReporteMatricula> lista = new ArrayList<>();
         Connection conexion = null;
         PreparedStatement sentencia = null;

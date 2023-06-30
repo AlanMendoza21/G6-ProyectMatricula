@@ -18,11 +18,11 @@ export class LoginComponent implements OnInit {
   constructor(private api:ApiService) { }
 
   ngOnInit(): void {
-    this.valida()
+    this.validar()
   }
 //usuario nombre, contraseña codigo
 
- valida():boolean{
+  validar():boolean{
     this.api.obtenerUsuarios().subscribe(data=>{this.usuarios= data.usuarios,
       console.log(this.usuarios)})
     let validado = false;
@@ -41,16 +41,16 @@ export class LoginComponent implements OnInit {
     }
     console.log(indice1)
     console.log(validado)
-   console.log(this.codUsuario)
+    console.log(this.codUsuario)
     return validado;
   }
   mostrarMensaje() {
-    this.valida()
-    if(this.valida()){
+    this.validar()
+    if(this.validar()){
       this.mensaje = "Usuario validado";
       console.log(this.mensaje)
     }
-    else if(this.valida()==false){
+    else if(this.validar()==false){
       this.mensaje = "Error, vuelva a intentar";}
     console.log("Mensaje: ")
     console.log(this.mensaje)

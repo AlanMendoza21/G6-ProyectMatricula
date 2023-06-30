@@ -10,27 +10,28 @@
       </li>
       <li class="opciones">
          <a href="#" id="opcionCursosDisponibles">
-          <img class="icono1" src="icono1.jpg" alt="cursos"><br/>
+          <img class="icono1" src="./assets/iconolibro1.png" alt="cursos"><br/>
           <span><b>Cursos</b><br> <b>Disponibles</b><br></span>
         </a>
       </li>
       <li class="opciones">
         <a href="#" id="opcionCargaHoraria">
-          <img class="icono2" src="horario.jpg" alt="cargahoraria"><br/>
+          <img class="icono2" src="./assets/icono2.png" alt="cargahoraria"><br/>
           <span><b>Carga horaria</b></span>
         </a>
       </li>
       <li class="opciones">
         <a href="#" id="opcionVacantes">
-          <img src="icono3.jpg" alt="vacantes"><br/>
+          <img src="./assets/icono3.png" alt="vacantes"><br/>
           <span><b>Vacantes</b></span>
         </a>
       </li>
       <li class="contenedor boton-matricular">
-        <button>
+        <button (click)="obtenerTurno()">
         <div *ngIf="mensaje=='Horario correcto'">
           <h1>"Horario correcto"</h1> </div>
           <a [routerLink]="['/matricula/', codUsuario]">Matricula</a>
+          MATRICULA
 
         </button>
       </li>
@@ -42,7 +43,7 @@
     <header class="bienvenida">
       <h1 id="tituloBienvenida"><br> BIENVENIDO AL SISTEMA MATRÍCULA</h1>
       <div class="iconouni">
-        <img src="app/imagenes/iconouni.jpg" alt="iconoUni">
+        <img src="./assets/iconouni.png" alt="iconoUni">
       </div>
     </header>
     <!-- Final parte derecha superior fijo -->
@@ -51,26 +52,48 @@
         <div class="contenedor-principal">
           <section class="principal-anuncios">
             <h2>Anuncios</h2>
-            <article> Aca van los anuncios</article>
-            <article>Aca van los anuncios</article>
-            <article>Aca van los anuncios</article>
-            <article>Aca van los anuncios</article>
+            <article class="articulo"> La Asamblea Estatutaria de la UNI, elegida al amparo de la Ley Universitaria No. 30220, promulgada el 09 de julio de
+              2014, mediante un proceso electoral transparente y reconocido por toda la comunidad universitaria y que ha sido
+              instalada el 20 de octubre de 2014 para elaborar y aprobar el nuevo Estatuto de la UNI, hace entrega del Estatuto
+              que normará la vida institucional de la UNI.
+              ver aqui:
+            </article>
+            <p><br> <b>PRÉAMBULO HISTORICO:</b><br>La Escuela Especial de Ingenieros de Construcciones Civiles y de Minas del Perú, que se transformó luego
+              en Universidad Nacional de Ingeniería (UNI), fue creada por el Art. 343 del Reglamento General de
+              Instrucción Pública del 18 de marzo de 1876, en el que se establece, además, que la nueva institución se
+              organiza conforme a un reglamento especial. En la misma fecha es aprobado el Reglamento Orgánico de
+              la Escuela Especial de Ingenieros Civiles y de Minas, el cual había sido elaborado anticipadamente, a
+              pedido del presidente Manuel...
+            </p>
+
             <button> Ver Reglamento Matrícula</button>
           </section>
           <section class="principal-turnos">
             <h2>Tu Horario:</h2>
             <div>Turno GRUPO {{numeroTurno}} del día {{fechaTurno}} de {{horaInicioTurno}} hasta {{horaFinTurno}}</div>
-            <h2>Turnos FIIS</h2>
-            <div class="principal-mostrar-turnos">
-              <span>Numero Turno | Hora Inicio Turno | Hora Fin Turno</span>
-              <li *ngFor="let data of lista">
-                <span>{{data.numeroTurno}}</span>
-                <span>  |   </span>
-                <span>{{data.horaInicioTurno}}</span>
-                <span>  |   </span>
-                <span>{{data.horaFinTurno}}</span>
-              </li>
-            </div>
+            <br>
+            <section class="principal-mostrar-turnos">
+              <h2>Turnos FIIS</h2>
+              <table class="tabla-turnos">
+                <thead>
+                <tr>
+                  <th>Numero Turno</th>
+                  <th>Hora Inicio Turno</th>
+                  <th>Hora Fin Turno</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let data of lista">
+                  <tr>
+                    <td>{{data.numeroTurno}}</td>
+                    <td>{{data.horaInicioTurno}}</td>
+                    <td>{{data.horaFinTurno}}</td>
+                  </tr>
+                </ng-container>
+                </tbody>
+              </table>
+            </section>
+
           </section>
         </div>
       </div>
